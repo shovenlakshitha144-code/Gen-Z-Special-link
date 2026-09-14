@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>GEN Z PROPOSAL — The Question Is Waiting ❤️</title>
+    <meta name="description" content="A premium, highly interactive Gen Z romantic proposal journey with playful chapters, mini-games, and a cinematic question." />
+    
+    <!-- OpenGraph / Social Meta Tags -->
+    <meta property="og:title" content="GEN Z PROPOSAL — The Question Is Waiting ❤️" />
+    <meta property="og:description" content="A premium, highly interactive Gen Z romantic proposal journey with playful chapters, mini-games, and a cinematic question." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#090511" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Google Fonts: Sinhala + Latin pairings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&family=Noto+Serif+Sinhala:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Background Canvas for Floating Hearts & Fireworks -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Deep Ambient Glow Orbs -->
+    <div class="ambient-background">
+      <div class="ambient-orb orb-1"></div>
+      <div class="ambient-orb orb-2"></div>
+      <div class="ambient-orb orb-3"></div>
+    </div>
+
+    <!-- Fixed Top Navigation Bar -->
+    <header class="top-nav">
+      <div class="progress-pill">
+        <span class="progress-dot"></span>
+        <span id="progress-indicator-text">Chapter 01 / ???</span>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Easter Egg 3-Tap Trigger -->
+        <button class="icon-btn easter-egg-heart" id="easter-egg-btn" title="රහස් surprise එකක්..." aria-label="Secret Heart">
+          ❤️
+        </button>
+
+        <!-- Sound and Music Toggle -->
+        <button class="icon-btn" id="sound-toggle-btn" title="Sound Effects & Music" aria-label="Toggle Sound">
+          🔊
+        </button>
+
+        <!-- Personalize Modal Trigger -->
+        <button class="icon-btn" id="settings-btn" title="නම් සහ කතාව Personalize කරන්න" aria-label="Personalize">
+          ⚙️
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Interactive Story Wrapper -->
+    <main class="app-wrapper">
+      <div id="story-container" class="story-card view-enter">
+        <!-- Dynamic Chapter Rendered by script.js -->
+      </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="floating-toast" class="floating-toast">
+      Notification
+    </div>
+
+    <!-- Random Micro-Message Floating Whispers -->
+    <div id="micro-whisper" class="micro-whisper-pill">
+      Psst… 👀
+    </div>
+
+    <!-- MODAL: Let Me Think (Gentle & Respectful in Natural Sinhala) -->
+    <div id="modal-let-me-think" class="modal-overlay">
+      <div class="modal-content">
+        <div class="badge-tag">Take Your Time 😌</div>
+        <h3 class="story-title" style="font-size:1.45rem;">හරි… 😌❤️</h3>
+        <p class="story-subtitle" style="margin-bottom:20px; font-size:1.05rem;">
+          කාලෙ අරගෙන හිතන්න.
+          <br/><br/>
+          හැබැයි…<br/>
+          මං මේ button එක දිහා<br/>
+          බලාගෙන ඉන්නවා. 👀😂
+        </p>
+        <button class="cta-btn" id="btn-think-return">
+          මට ආයෙත් ප්‍රශ්නය පෙන්නන්න 🥺❤️
+        </button>
+      </div>
+    </div>
+
+    <!-- MODAL: Secret Easter Egg -->
+    <div id="modal-easter-egg" class="modal-overlay">
+      <div class="modal-content" style="text-align:center;">
+        <span style="font-size:3rem; display:block; margin-bottom:12px;">🤫</span>
+        <div class="badge-tag" style="margin:0 auto 12px;">Secret Unlocked!</div>
+        <h3 class="story-title">Secret unlocked 🤫❤️</h3>
+        <p class="story-subtitle" id="easter-egg-text">
+          "අද ඔයාට කවුරුත් කිව්වෙ නැත්නම් මම කියන්නම්: ඔයා ඔය phone screen එක දිහා බලාගෙන ඉද්දි හරිම cute අනේ. 🥹❤️"
+        </p>
+        <button class="cta-btn" id="close-easter-egg" style="margin-top:10px;">
+          මේක අපේ secret එකක් 🤐
+        </button>
+      </div>
+    </div>
+
+    <!-- MODAL: Personalize Names & Message in Sinhala -->
+    <div id="modal-settings" class="modal-overlay">
+      <div class="modal-content">
+        <div class="badge-tag">Personalize Link 💌</div>
+        <h3 class="story-title" style="font-size:1.35rem;">නම් සහ විස්තර වෙනස් කරන්න</h3>
+        <p class="story-subtitle" style="margin-bottom:16px; font-size:0.88rem;">
+          ඔයාගේ ආදරණීය කෙනා වෙනුවෙන් නම් සහ විශේෂ පණිවිඩය සකස් කරන්න.
+        </p>
+
+        <div class="input-group">
+          <label class="input-label" for="input-to">ලැබෙන්නාගේ නම (Their Name)</label>
+          <input type="text" id="input-to" class="text-input" placeholder="උදා: සෙනුරි / චතුරි" />
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="input-from">ඔයාගේ නම (Your Name)</label>
+          <input type="text" id="input-from" class="text-input" placeholder="උදා: කසුන් / දසුන්" />
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="input-date">විශේෂ දිනය හෝ වදනක් (Special Date / Caption)</label>
+          <input type="text" id="input-date" class="text-input" placeholder="අද සහ හැමදාටම ❤️" />
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="input-msg">ආදරණීය පණිවිඩය (Personal Message)</label>
+          <textarea id="input-msg" class="text-input" rows="3" placeholder="ඔයාගේ හදවතින්ම දැනෙන ආදරණීය වචන..."></textarea>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="input-music-file">Background Music (ඔබේ Music එක / Audio Track)</label>
+          <input type="file" id="input-music-file" accept="audio/*" class="text-input" style="padding:8px 12px; font-size:0.85rem;" />
+          <small style="color:var(--text-muted); font-size:0.75rem; display:block; margin-top:4px;">
+            ඔබේ කැමති ඕනෑම MP3 / Audio ගොනුවක් තෝරන්න (Auto play at 50% volume 🎶)
+          </small>
+        </div>
+
+        <div class="dual-buttons">
+          <button class="cta-btn" id="save-settings-btn">
+            Save &amp; Update Story ✨
+          </button>
+          <button class="secondary-btn" id="restart-settings-btn" style="border-color:rgba(255,51,119,0.35); color:#ff9bc0;">
+            🔄 Restart Journey from Beginning
+          </button>
+          <button class="secondary-btn" id="close-settings-btn">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Primary Vanilla JavaScript Engine -->
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
